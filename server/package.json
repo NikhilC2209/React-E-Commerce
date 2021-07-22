@@ -6,7 +6,8 @@
   "scripts": {
     "server": "nodemon server.js",
     "client": "npm start --prefix ../client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node controller/filler.js"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,8 @@
     "nodemon": "^2.0.12"
   },
   "dependencies": {
+    "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.10",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongoose": "^5.13.3"
