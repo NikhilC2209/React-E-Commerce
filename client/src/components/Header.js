@@ -4,24 +4,54 @@ import {
 	NavDropdown,
 	Container,
 } from 'react-bootstrap'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const Header = () => {
+const Header = ({history}) => {
+
+	useEffect(() => {
+		const userCookie = document.cookie;
+					//  		.split('; ')
+					  //		.find(row => row.startsWith('user='))
+		console.log(userCookie);
+		if(userCookie) { 
+			setLoggedIn(true);
+			//history.push("/form");
+		}
+
+	},)
+
+	const [loggedIn, setLoggedIn] = useState(false);
+
+	const logHandler = async (e) => {
+		e.preventDefault();
+		try {
+			const data = await axios.post(
+				'/account/logout');
+			console.log(data);
+		} catch(err) {
+			console.log(err);
+		}
+		setLoggedIn(false);
+		console.log("Logged out");
+	}
+
 	return (
 		<Navbar bg="light" expand="lg">
 		  <Container>
-		    <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+		    <Navbar.Brand href="#home">Game-Store</Navbar.Brand>
 		    <Navbar.Toggle aria-controls="basic-navbar-nav" />
 		    <Navbar.Collapse id="basic-navbar-nav">
 		      <Nav className="me-auto">
 		        <Nav.Link href="#home">Home</Nav.Link>
 		        <Nav.Link href="#link">Link</Nav.Link>
 		        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-		          <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-		          <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-		          <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+		          <NavDropdown.Item href="/form/login">Login</NavDropdown.Item>
+		          <NavDropdown.Item href="/form/	register">Register</NavDropdown.Item>
 		          <NavDropdown.Divider />
 		          <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
 		        </NavDropdown>
+		        {loggedIn && <Nav.Link href="/account/logout" onClick={logHandler}>Logout</Nav.Link>}
 		      </Nav>
 		    </Navbar.Collapse>
 		  </Container>

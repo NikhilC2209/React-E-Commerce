@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
+const cors = require("cors");
 
 require('dotenv').config({ path: path.resolve(__dirname, '../../.env') })
 const connectDB = require("./controller/db");
@@ -11,9 +12,10 @@ const app = express();
 const port = 5000
 app.use(bodyParser.urlencoded({ limit: "10mb", extended: false }))
 app.use(bodyParser.json())
+app.use(cors({credentials: true, origin: "http://localhost:3000"}))
 
 const loginRouter = require("./routes/login");
-app.use("/login",loginRouter);	
+app.use("/account",loginRouter);	
 
 app.get("/", (req,res) => {
 	res.send("<h1>Hello World!</h1>")
