@@ -1,0 +1,18 @@
+.discount {
+	padding: 12px;
+}
+
+.game-card {
+	overflow: hidden;
+}
+
+.game-img {
+	max-height: 330px;	
+	transition: 0.5s all ease-in-out;
+}
+
+.game-img:hover {
+	filter: grayscale(100%);
+	cursor: pointer;
+	transform: scale(1.04);
+}

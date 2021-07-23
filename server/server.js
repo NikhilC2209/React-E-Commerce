@@ -15,7 +15,9 @@ app.use(bodyParser.json())
 app.use(cors({credentials: true, origin: "http://localhost:3000"}))
 
 const loginRouter = require("./routes/login");
+const gameRouter = require("./routes/gameData");
 app.use("/account",loginRouter);	
+app.use("/game",gameRouter);	
 
 app.get("/", (req,res) => {
 	res.send("<h1>Hello World!</h1>")
