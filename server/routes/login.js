@@ -71,8 +71,8 @@ router.post("/login", async (req,res) => {
 			throw new Error("User does not exists!");
 		} else {
 			if(userPass===userExists.password) {
-				console.log(userExists);
-				res.cookie('user', userName, {path: '/', maxAge: 1000*60*10});
+				console.log(userExists._id);
+				res.cookie('user', userExists.id, {path: '/', maxAge: 1000*60*10});
 				res.json(userExists);
 			} else {
 				console.log("Incorrect Password!");

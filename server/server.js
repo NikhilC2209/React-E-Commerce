@@ -16,8 +16,10 @@ app.use(cors({credentials: true, origin: "http://localhost:3000"}))
 
 const loginRouter = require("./routes/login");
 const gameRouter = require("./routes/gameData");
+const cartRouter = require("./routes/cart");
 app.use("/account",loginRouter);	
-app.use("/game",gameRouter);	
+app.use("/game",gameRouter);
+app.use("/cart",cartRouter);	
 
 app.get("/", (req,res) => {
 	res.send("<h1>Hello World!</h1>")

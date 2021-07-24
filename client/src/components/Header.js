@@ -5,6 +5,7 @@ import {
 	Container,
 } from 'react-bootstrap'
 import { useEffect, useState } from 'react';
+import { GiShoppingCart } from "react-icons/gi";
 import axios from 'axios';
 
 const Header = ({history}) => {
@@ -34,6 +35,7 @@ const Header = ({history}) => {
 		}
 		setLoggedIn(false);
 		console.log("Logged out");
+		history.push("/form/login");
 	}
 
 	return (
@@ -43,8 +45,8 @@ const Header = ({history}) => {
 		    <Navbar.Toggle aria-controls="basic-navbar-nav" />
 		    <Navbar.Collapse id="basic-navbar-nav">
 		      <Nav className="me-auto">
-		        <Nav.Link href="#home">Home</Nav.Link>
-		        <Nav.Link href="#link">Link</Nav.Link>
+		        <Nav.Link href="/browse">Browse</Nav.Link>
+		        <Nav.Link href="/cart"><GiShoppingCart />View Cart</Nav.Link>
 		        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
 		          <NavDropdown.Item href="/form/login">Login</NavDropdown.Item>
 		          <NavDropdown.Item href="/form/	register">Register</NavDropdown.Item>

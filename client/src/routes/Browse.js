@@ -7,7 +7,6 @@ import {
 } from 'react-bootstrap';
 import { GiShoppingCart } from "react-icons/gi";
 import { useEffect, useState } from 'react';
-import GameCard from '../components/GameCard';
 import axios from 'axios';
 import './Browse.css';
 
@@ -19,7 +18,7 @@ const Browse = ({history}) => {
 		try {
 			const gameData = await axios.post(
 				'/game/data');
-			console.log(gameData.data);
+			//console.log(gameData.data);
 			return gameData.data;
 		} catch(err) {
 			console.log(err);
@@ -30,13 +29,35 @@ const Browse = ({history}) => {
 		const userCookie = document.cookie;
 					//  		.split('; ')
 					  //		.find(row => row.startsWith('user='))
-		console.log(userCookie);
+		//console.log(userCookie);
 		if(!userCookie) { 
 			history.push("/form/login");
 		}
 		setData(await fetchData());
 
 	}, [history])
+
+	const cartHandler = async (e) => {
+		const userCookie = document.cookie.split('=')[1];
+		console.log(userCookie);
+		const gameID = e.currentTarget.getAttribute('value')
+		console.log(gameID);
+
+		try {
+			const config = {
+				headers: {
+					"Content-type": "application/json"
+				}
+			}
+			const { data } = await axios.post(
+				`/cart/add/${gameID}`, {
+				userCookie,
+				config,
+			})
+		} catch(err) {
+			console.log(err);
+		}	
+	}
 
 	return (
 		<Container>
@@ -54,7 +75,7 @@ const Browse = ({history}) => {
 			          <h5>PRICE: {_.price}</h5>
 			          <ButtonGroup aria-label="Basic example">
 				          <button type="button" class="btn btn-info discount">{_.discount}</button>
-				          <button type="button" class="mx-3 btn btn-success">ADD TO CART <GiShoppingCart /></button>
+				          <button type="button" class="mx-3 btn btn-success" value={_._id} onClick={cartHandler}>ADD TO CART <GiShoppingCart /></button>
 				       </ButtonGroup>   
 			        </Card.Body>
 			      </Card>
