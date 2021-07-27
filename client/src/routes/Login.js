@@ -9,6 +9,10 @@ import ErrorMessage from '../components/ErrorMessage';
 
 const Login = ({history}) => {
 
+	const [user, setUser] = useState("");
+	const [password, setPassword] = useState("");
+	const [error, setError] = useState("");
+
 	useEffect(() => {
 		const userCookie = document.cookie;
 					//  		.split('; ')
@@ -19,10 +23,6 @@ const Login = ({history}) => {
 		}
 
 	}, [history])
-
-	const [user, setUser] = useState("");
-	const [password, setPassword] = useState("");
-	const [error, setError] = useState("");
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
@@ -42,7 +42,10 @@ const Login = ({history}) => {
 				config,
 			});	
 			if(data.error) {
+				console.log(data.error);
 				setError(data.error);	
+			} else {
+				history.push("/browse");
 			}
 		} catch(err) {
 			console.log(err);
@@ -62,9 +65,6 @@ const Login = ({history}) => {
 			      value={user}
 			      onChange={(e)=>setUser(e.target.value)}	
 			      />
-			    <Form.Text className="text-muted">
-			      We'll never share your email with anyone else.
-			    </Form.Text>
 			  </Form.Group>
 
 			  <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -76,10 +76,8 @@ const Login = ({history}) => {
 			      onChange={(e)=>setPassword(e.target.value)}
 			      />
 			  </Form.Group>
-			  <Form.Group className="mb-3" controlId="formBasicCheckbox">
-			    <Form.Check type="checkbox" label="Check me out" />
-			  </Form.Group>
-			  <Button variant="primary" type="submit">
+			  <a href='/form/register'>New to GameStore? Sign Up! here</a><br/>
+			  <Button variant="primary" type="submit" className="my-3">
 			    Submit
 			  </Button>
 			</Form>

@@ -1,0 +1,14 @@
+.back-img {
+	background-image: url('../../assets/desert.jpg');
+	background-size: 100vw 90vh;
+	background-repeat:  no-repeat;
+	min-height: 100vh;
+}
+
+.back-img h1 {
+	font-size: 45px;
+}
+
+.back-img p {
+	font-size: 35px;
+}

@@ -34,14 +34,14 @@ const Header = ({history}) => {
 			console.log(err);
 		}
 		setLoggedIn(false);
-		console.log("Logged out");
 		history.push("/form/login");
+		console.log("Logged out");
 	}
 
 	return (
 		<Navbar bg="light" expand="lg">
 		  <Container>
-		    <Navbar.Brand href="#home">Game-Store</Navbar.Brand>
+		    <Navbar.Brand href="/">Game-Store</Navbar.Brand>
 		    <Navbar.Toggle aria-controls="basic-navbar-nav" />
 		    <Navbar.Collapse id="basic-navbar-nav">
 		      <Nav className="me-auto">
@@ -49,7 +49,7 @@ const Header = ({history}) => {
 		        <Nav.Link href="/cart"><GiShoppingCart />View Cart</Nav.Link>
 		        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
 		          <NavDropdown.Item href="/form/login">Login</NavDropdown.Item>
-		          <NavDropdown.Item href="/form/	register">Register</NavDropdown.Item>
+		          <NavDropdown.Item href="/form/register">Register</NavDropdown.Item>
 		          <NavDropdown.Divider />
 		          <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
 		        </NavDropdown>

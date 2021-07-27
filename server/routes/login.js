@@ -8,6 +8,7 @@ router.post("/register", async (req,res) => {
 	const userName = req.body.user;
 	const userEmail = req.body.email;
     const userPass = req.body.password;
+    const userCart = " ";
     console.log(req.body);
 
     const validatePassword = (pass) => {
@@ -50,10 +51,12 @@ router.post("/register", async (req,res) => {
 	            username: userName,
 	            email: userEmail,
 	            password: userPass,
+	            cart: userCart,
 	        });
 	        console.log(user);
 	        const saveUser = await user.save(); 
 	        console.log("User data inserted successfully!");
+	        res.json(user);
         }
     } catch(err) {
     	res.json({"error": err.message});
@@ -73,6 +76,7 @@ router.post("/login", async (req,res) => {
 			if(userPass===userExists.password) {
 				console.log(userExists._id);
 				res.cookie('user', userExists.id, {path: '/', maxAge: 1000*60*10});
+				console.log(userExists);
 				res.json(userExists);
 			} else {
 				console.log("Incorrect Password!");

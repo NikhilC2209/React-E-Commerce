@@ -28,6 +28,7 @@ const Register = ({history}) => {
 	const submitHandler = async (e) => {
 		e.preventDefault();
 		console.log(user,password);
+		
 
 		try {
 			const config = {
@@ -47,6 +48,8 @@ const Register = ({history}) => {
 			if(data.error) {
 				console.log('idhar');
 				setError(data.error);	
+			} else {
+				history.push('/form/login');
 			}
 		} catch(err) {
 			console.log(err);

@@ -1,0 +1,23 @@
+.land-img {
+	height: 500px;
+}
+
+.land-btn {
+	border-radius: 35px;
+    background-size: 200% auto;
+    background-image: linear-gradient(to right, #895cf2 0%, #ffabf4 50%, #895cf2 100%);
+    width: 180px;
+    padding: 10px;
+    transition: 0.5s;
+    border: none;
+    outline: none;
+    color: white;
+}
+
+.land-btn:hover {	
+    background-position: right center;
+}
+
+.sub-head {
+	font-family: Georgia, serif;
+}
